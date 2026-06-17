@@ -4,13 +4,13 @@ on:
 push:
 branches:
 - main
-
 workflow_dispatch:
 
 jobs:
 build:
 runs-on: ubuntu-latest
 
+```
 steps:
   - name: Checkout Code
     uses: actions/checkout@v4
@@ -26,8 +26,7 @@ steps:
     uses: aws-actions/amazon-ecr-login@v2
 
   - name: Build Docker Image
-    run: |
-      docker build -t devsecops-demo:v1 .
+    run: docker build -t devsecops-demo:v1 .
 
   - name: Trivy Scan
     uses: aquasecurity/trivy-action@master
@@ -36,12 +35,10 @@ steps:
       format: table
 
   - name: Tag Image
-    run: |
-      docker tag devsecops-demo:v1 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
+    run: docker tag devsecops-demo:v1 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
 
   - name: Push Image to ECR
-    run: |
-      docker push 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
+    run: docker push 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
 
   - name: Deploy to EC2
     uses: appleboy/ssh-action@v1.0.3
@@ -58,3 +55,4 @@ steps:
         docker pull 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
 
         docker run -d --name devsecops-demo -p 80:80 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
+```
