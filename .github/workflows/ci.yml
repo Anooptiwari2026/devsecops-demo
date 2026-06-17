@@ -20,7 +20,7 @@ steps:
     with:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-region: ${{ secrets.AWS_REGION }}
+      aws-region: ap-south-1
 
   - name: Login to Amazon ECR
     uses: aws-actions/amazon-ecr-login@v2
@@ -58,4 +58,3 @@ steps:
         docker pull 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
 
         docker run -d --name devsecops-demo -p 80:80 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
-
