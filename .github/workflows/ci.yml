@@ -10,7 +10,6 @@ jobs:
 build:
 runs-on: ubuntu-latest
 
-```
 steps:
   - name: Checkout Code
     uses: actions/checkout@v4
@@ -55,4 +54,3 @@ steps:
         docker pull 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
 
         docker run -d --name devsecops-demo -p 80:80 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
-```
