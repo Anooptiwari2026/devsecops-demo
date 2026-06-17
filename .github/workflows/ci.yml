@@ -38,11 +38,12 @@ jobs:
 
       - name: Tag Image
         run: |
-          docker tag devsecops-demo:v1 ${{ secrets.ECR_REPOSITORY }}:latest
+          docker tag devsecops-demo:v1 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
 
       - name: Push Image to ECR
         run: |
-          docker push ${{ secrets.ECR_REPOSITORY }}:latest
+          docker push 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
+
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
@@ -57,7 +58,8 @@ jobs:
             docker stop devsecops-demo || true
             docker rm devsecops-demo || true
 
-            docker pull ${{ secrets.ECR_REPOSITORY }}:latest
+            docker pull 854653744091.dkr.ecr.ap-south-1.amazonaws.com/devsecops-demo:latest
+
 
             docker run -d \
               --name devsecops-demo \
