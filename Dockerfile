@@ -2,6 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY app.py .
+COPY requirements.txt .
 
-CMD ["python","app.py"]
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 80
+
+CMD ["python", "app.py"]
